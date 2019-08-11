@@ -42,6 +42,16 @@ class BeerCardList extends Component {
         sortBy: 'name',
     }
     
+//callback function for sort method
+    compare = (a , b) => {
+        if(this.state.sortBy.toLocaleLowerCase() === 'name'){
+            if(a.name < b.name){
+                return -1;
+            }
+        }else if(this.state.sortBy.toLocaleLowerCase() === 'abv'){
+            return a.abv - b.abv;
+        }
+    };
 // callback funtion to update value to use to sort
   handleUpdateSortValue = (sortBy) => {
     this.setState({
@@ -51,23 +61,13 @@ class BeerCardList extends Component {
 
     render(){
         const {beers} = this.props;
-        //callback function for sort method
-        const compare = (a , b) => {
-            if(this.state.sortBy.toLocaleLowerCase() === 'name'){
-                if(a.name < b.name){
-                    return -1;
-                }
-            }else if(this.state.sortBy.toLocaleLowerCase() === 'abv'){
-                return a.abv - b.abv;
-            }
-        };
         return(
             <React.Fragment>
                 <Heading>Punk Beers</Heading>
                 <SortBeer UpdateSortValue={this.handleUpdateSortValue}/>
                 <CardListContainer>
                     {
-                        beers.sort(compare).map(beer => {
+                        beers.sort(this.compare).map(beer => {
                             return(
                                 <Card key={beer.id}>
                                     <BeerCard 
