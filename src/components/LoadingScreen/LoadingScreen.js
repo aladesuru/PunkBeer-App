@@ -3,7 +3,7 @@ import React from "react";
 const LoadingScreen = () => {
   return (
     <div className="loading-screen-container">
-      <span>Loading post</span>
+      <span>Loading Data</span>
       <span />
     </div>
   );

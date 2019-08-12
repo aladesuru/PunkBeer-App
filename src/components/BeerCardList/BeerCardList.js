@@ -38,7 +38,6 @@ const Card = styled.div`
 class BeerCardList extends Component {
 
     state = {
-        limit: 5,
         sortBy: 'name',
     }
     
